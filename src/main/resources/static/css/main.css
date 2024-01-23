@@ -22,3 +22,13 @@
         height: 3rem;
     }
 }
+
+
+/*SIDEBAR NAV*/
+.sidebar-nav {
+
+}
+.nav-button:hover {
+    background-color: blue;
+    color: white;
+}

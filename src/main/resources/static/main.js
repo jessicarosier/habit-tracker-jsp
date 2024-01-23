@@ -5,6 +5,15 @@ import {getAllHabits, getUpdatedPercent} from "./js/api-get.js";
 //update the daily percent complete in the DOM
 async function updateCurrentPercent() {
     let percentCompleted = await getUpdatedPercent();
+    console.log(percentCompleted);
+    if (percentCompleted === 100) {
+        $("#daily-percent-complete").css({"color": "green", "font-weight": "bold"});
+        $(".progress-bar").css("background-color", "green");
+    } else {
+        $("#daily-percent-complete").css({color: "", "font-weight": ""});
+        $(".progress-bar").css("background-color", "");
+    }
+
     $("#daily-percent-complete").text(`${percentCompleted.toFixed(0)}%`);
     $(".progress-bar").css("width", `${percentCompleted.toFixed(0)}%`);
 }
