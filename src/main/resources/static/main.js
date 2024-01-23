@@ -1,57 +1,19 @@
-const urlPattern = `${window.location.protocol}//${window.location.host}`;
-const addHabitBtn = document.querySelector("#add-habit-btn");
-const percentCompletedContainer = document.querySelector("#daily-percent-complete");
-let percentCompleted;
+import {urlPattern} from "./js/variables.js";
+import {getAllHabits, getUpdatedPercent} from "./js/api-get.js";
 
-console.log("test");
 
-async function getAllHabits() {
-    const backendEndpoint = `${urlPattern}/api/habits`;
-    try {
-        const response = await fetch(backendEndpoint, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-        const responseData = await response.json();
-        console.log("Habits successfully received from the backend:", responseData);
-        return responseData;
-    } catch (error) {
-        console.error("Error receiving habits from the backend:", error.message);
-    }
-}
-
-async function getUpdatedPercent() {
-    const backendEndpoint = `${urlPattern}/api/update/percent`;
-    try {
-        const response = await fetch(backendEndpoint, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-        const responseData = await response.json();
-        console.log("Percentage successfully received from the backend:", responseData);
-        return responseData;
-    } catch (error) {
-        console.error("Error receiving percentage from the backend:", error.message);
-    }
-}
-
+//update the daily percent complete in the DOM
 async function updateCurrentPercent() {
-    percentCompleted = await getUpdatedPercent();
-    percentCompletedContainer.innerText = `${percentCompleted.toFixed(0)}%`;
-    const progressbar = document.querySelector(".progress");
-    progressbar.innerHTML = `
-    <div class="progress-bar bg-info" style="width: ${percentCompleted}%"></div>
-    `;
+    let percentCompleted = await getUpdatedPercent();
+    $("#daily-percent-complete").text(`${percentCompleted.toFixed(0)}%`);
+    $(".progress-bar").animate({width: `${percentCompleted}%`});
 }
 
 
+//adds a new habit, sends it to the backend to save it to the database, and appends it to the DOM
 async function addNewHabit() {
-    const habitName = document.querySelector("#habit-name").value;
-    const habitCategory = document.querySelector("#habit-category").value;
+    const habitName = $("#habit-name").val();
+    const habitCategory = $("#habit-category").val();
     const habitFrequency = document.querySelector("input[name=\"habit-frequency\"]:checked").getAttribute("id");
 
     const habit = {
@@ -83,8 +45,8 @@ async function addNewHabit() {
     }
 }
 
+// dynamically builds a habit card node and appends it to the DOM
 async function renderSingleHabit(habit) {
-    const habitsContainer = document.querySelector("#habit-container");
     let status;
     let statusIcon;
     let color;
@@ -112,6 +74,7 @@ async function renderSingleHabit(habit) {
     }
 
     const habitCard = document.createElement("div");
+
     habitCard.classList.add("card", `border-${categoryColor}`, "mb-3", "pb-2", `${backgroundColor}`);
     habitCard.innerHTML = `
             <div class="card-body text-${textColor}">
@@ -229,26 +192,29 @@ async function renderSingleHabit(habit) {
         }
     });
 
-    habitsContainer.appendChild(habitCard);
+    $("#habit-container").append(habitCard);
 
 }
 
 
+// callback function to render all habits from the backend into the DOM
 async function renderHabits() {
+    // get all habits from the backend and return them as an array
     const habits = await getAllHabits();
+    //update the daily percent complete in the DOM
     await updateCurrentPercent();
-
+    // iterate over the array of habits and pass each habit to renderSingleHabit()
     habits.forEach(habit => {
         renderSingleHabit(habit);
     });
 }
 
-addHabitBtn.addEventListener("click", addNewHabit);
 
+
+// event listener for add habit button
+$("#add-habit-btn").click(() => addNewHabit());
+
+// event listener on window load, calls renderHabits()
 window.addEventListener("load", async () => {
-    const habits = await getAllHabits();
-
     await renderHabits();
-
-
 });

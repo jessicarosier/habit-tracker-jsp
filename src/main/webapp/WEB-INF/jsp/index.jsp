@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="progress p-0" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-
+                    <div class="progress-bar"></div>
                 </div>
 
                 <p class="m-0 text-end w-100">
@@ -65,10 +65,6 @@
                         </button>
                     </div>
                     <h3 class="w-50"> <span>${weekStart}</span> - <span>${weekEnd}</span> </h3>
-                </div>
-                <div class="progress" role="progressbar" aria-label="weekly-progress" aria-valuenow="67" aria-valuemin="0"
-                     aria-valuemax="100">
-                    <div class="progress-bar" style="width: 44%"></div>
                 </div>
 
                 <div class="tab-content" id="myTabContent">
