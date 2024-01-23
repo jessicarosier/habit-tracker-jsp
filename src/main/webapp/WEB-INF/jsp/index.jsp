@@ -7,6 +7,7 @@
 </jsp:include>
 <body>
 <main class="page-wrapper">
+    <jsp:include page="partials/preloader.jsp"></jsp:include>
     <div class="container pt-5">
         <nav class="row">
             <div class="row col-md-8 d-flex flex-column">
