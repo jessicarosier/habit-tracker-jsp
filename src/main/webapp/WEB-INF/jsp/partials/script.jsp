@@ -10,4 +10,4 @@
         crossorigin="anonymous"></script>
 <%--Custom JS--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/preloader.js"></script>
-<script type="module" src="${pageContext.request.contextPath}/main.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/${param.js}"></script>

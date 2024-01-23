@@ -8,6 +8,7 @@
 <body>
 <main class="page-wrapper">
     <jsp:include page="partials/preloader.jsp"></jsp:include>
+    <jsp:include page="partials/nav.jsp"></jsp:include>
     <div class="container pt-5">
         <nav class="row">
             <div class="row col-md-8 d-flex flex-column">
@@ -151,6 +152,8 @@
 </main>
 
 
-<jsp:include page="partials/script.jsp"></jsp:include>
+<jsp:include page="partials/script.jsp">
+    <jsp:param name="js" value="main.js"/>
+</jsp:include>
 </body>
 </html>

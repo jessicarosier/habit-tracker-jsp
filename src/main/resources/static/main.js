@@ -6,7 +6,7 @@ import {getAllHabits, getUpdatedPercent} from "./js/api-get.js";
 async function updateCurrentPercent() {
     let percentCompleted = await getUpdatedPercent();
     $("#daily-percent-complete").text(`${percentCompleted.toFixed(0)}%`);
-    $(".progress-bar").animate({width: `${percentCompleted}%`});
+    $(".progress-bar").css("width", `${percentCompleted.toFixed(0)}%`);
 }
 
 
@@ -208,7 +208,6 @@ async function renderHabits() {
         renderSingleHabit(habit);
     });
 }
-
 
 
 // event listener for add habit button
