@@ -3,6 +3,7 @@ package com.jessicarosier.habittrackerjsp.controllers;
 
 import com.jessicarosier.habittrackerjsp.models.Habit;
 import com.jessicarosier.habittrackerjsp.models.User;
+import com.jessicarosier.habittrackerjsp.repositories.HabitRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,12 @@ import java.time.format.DateTimeFormatter;
 
 @Controller
 public class HomeController {
+
+    private HabitRepository habitDao;
+
+    public HomeController(HabitRepository habitDao) {
+        this.habitDao = habitDao;
+    }
 
 
     @GetMapping("/")
@@ -30,6 +37,7 @@ public class HomeController {
         model.addAttribute("date", currentDate.format(now));
         //add a new habit to the model
         model.addAttribute("habit", new Habit());
+        model.addAttribute("habits", habitDao.findAll());
         //add the current User to the model
         User user = new User();
         user.setFirstName("Jessica");

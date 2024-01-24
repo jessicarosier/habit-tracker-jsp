@@ -19,7 +19,7 @@
 
 
 <jsp:include page="partials/script.jsp">
-    <jsp:param name="js" value="dashboard.js"/>
+    <jsp:param name="js" value="js/dashboard.js"/>
 </jsp:include>
 </body>
 </html>

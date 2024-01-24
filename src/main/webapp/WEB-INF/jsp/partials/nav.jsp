@@ -9,7 +9,7 @@
         <li class="w-100">
             <a class="nav-button btn w-100 text-start" href="/dashboard">
                 <i class="bi bi-speedometer"></i>
-                 Dashboard
+                 Stats Dashboard
             </a>
         </li>
         <li class="w-100">

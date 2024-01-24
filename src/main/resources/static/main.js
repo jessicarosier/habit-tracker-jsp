@@ -6,6 +6,10 @@ import {getAllHabits, getUpdatedPercent} from "./js/api-get.js";
 async function updateCurrentPercent() {
     let percentCompleted = await getUpdatedPercent();
     console.log(percentCompleted);
+    if (percentCompleted === 0) {
+        percentCompleted = 0;
+    }
+
     if (percentCompleted === 100) {
         $("#daily-percent-complete").css({"color": "green", "font-weight": "bold"});
         $(".progress-bar").css("background-color", "green");
@@ -61,7 +65,7 @@ async function renderSingleHabit(habit) {
     let color;
     let textColor;
     let backgroundColor;
-    let categoryColor = habit.category.color;
+    let categoryColor = "primary";
     let buttonColor;
 
     if (habit.completed === false) {
@@ -140,6 +144,7 @@ async function renderSingleHabit(habit) {
         habitCard.remove();
         // TODO: update the percentage not working on delete
         await updateCurrentPercent();
+        await checkForHabits();
     });
 
     const toggleStatusBtn = habitCard.querySelector(".toggle-status");
@@ -200,7 +205,7 @@ async function renderSingleHabit(habit) {
             console.error("Error updating habit status on the backend:", error.message);
         }
     });
-
+    await checkForHabits();
     $("#habit-container").append(habitCard);
 
 }
@@ -210,6 +215,7 @@ async function renderSingleHabit(habit) {
 async function renderHabits() {
     // get all habits from the backend and return them as an array
     const habits = await getAllHabits();
+    await checkForHabits();
     //update the daily percent complete in the DOM
     await updateCurrentPercent();
     // iterate over the array of habits and pass each habit to renderSingleHabit()
@@ -218,11 +224,20 @@ async function renderHabits() {
     });
 }
 
+async function checkForHabits() {
+    const habits = await getAllHabits();
+    console.log(habits.length);
+    if (habits.length === 0) {
+        $("#no-habits").show();
+    } else {
+        $("#no-habits").hide();
+    }
+
+}
+
 
 // event listener for add habit button
-$("#add-habit-btn").click(() => addNewHabit());
+    $("#add-habit-btn").click(() => addNewHabit());
 
-// event listener on window load, calls renderHabits()
-window.addEventListener("load", async () => {
-    await renderHabits();
-});
+// event listener always listening for the habits to be rendered
+    window.addEventListener("DOMContentLoaded", renderHabits);

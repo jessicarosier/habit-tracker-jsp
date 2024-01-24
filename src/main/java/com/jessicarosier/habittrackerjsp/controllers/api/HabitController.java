@@ -61,6 +61,10 @@ import java.util.ArrayList;
         public int updatePercent() {
             ArrayList<Habit> habits = new ArrayList<>(habitRepository.findAll());
             int totalHabits = habits.size();
+            if(totalHabits == 0) {
+                return 0;
+            }
+
             int completedHabits = 0;
             for (Habit habit : habits) {
                 if (habit.isCompleted()) {
@@ -68,6 +72,8 @@ import java.util.ArrayList;
                 }
             }
             int percent = (completedHabits * 100) / totalHabits;
+
+
             return percent;
         }
 
