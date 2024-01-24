@@ -82,8 +82,6 @@ async function renderSingleHabit(habit) {
         textColor = "white";
         buttonColor = "btn-outline-light";
         backgroundColor = `bg-${categoryColor}`;
-
-
     }
 
     const habitCard = document.createElement("div");

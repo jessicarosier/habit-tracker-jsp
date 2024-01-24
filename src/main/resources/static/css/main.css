@@ -25,10 +25,14 @@
 
 
 /*SIDEBAR NAV*/
-.sidebar-nav {
-
-}
 .nav-button:hover {
     background-color: blue;
     color: white;
 }
+
+/* HABIT CONTAINER */
+#habit-container {
+
+}
+
+/* HABIT CARD */
