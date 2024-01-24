@@ -13,13 +13,14 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/physical">Physical Health</a></li>
-                    <li><a class="dropdown-item" href="#">Mental Health</a></li>
-                    <li><a class="dropdown-item" href="#">Relationships</a></li>
-                    <li><a class="dropdown-item" href="#">Time</a></li>
-                    <li><a class="dropdown-item" href="#">Career</a></li>
-                    <li><a class="dropdown-item" href="#">Financial</a></li>
-                    <li><a class="dropdown-item" href="#">Spiritual</a></li>
+                    <li class="dropdown-item btn category-btn">All</li>
+                    <li class="dropdown-item btn category-btn">Physical Health</li>
+                    <li class="dropdown-item btn category-btn">Mental Health</li>
+                    <li class="dropdown-item btn category-btn">Relationships</li>
+                    <li class="dropdown-item btn category-btn">Personal Growth</li>
+                    <li class="dropdown-item btn category-btn">Career</li>
+                    <li class="dropdown-item btn category-btn">Financial</li>
+                    <li class="dropdown-item btn category-btn">Spiritual</li>
                 </ul>
             </div>
         </div>

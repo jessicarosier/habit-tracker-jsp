@@ -1,5 +1,5 @@
 import {urlPattern} from "./js/variables.js";
-import {getAllHabits, getUpdatedPercent} from "./js/api-get.js";
+import {getAllHabits, getUpdatedPercent, getHabitsByCategory} from "./js/api-get.js";
 
 
 //update the daily percent complete in the DOM
@@ -88,7 +88,7 @@ async function renderSingleHabit(habit) {
 
     const habitCard = document.createElement("div");
 
-    habitCard.classList.add("card", `border-${categoryColor}`, "mb-3", "pb-2", `${backgroundColor}`);
+    habitCard.classList.add("card", `border-${categoryColor}`, "mb-3", "p-3", "rounded-3", `${backgroundColor}`);
     habitCard.innerHTML = `
             <div class="card-body text-${textColor}">
                     <p>
@@ -232,8 +232,33 @@ async function checkForHabits() {
     } else {
         $("#no-habits").hide();
     }
-
 }
+
+async function renderHabitsByCategory(categoryName) {
+    $("#habit-container").empty();
+    const habits = await getHabitsByCategory(categoryName);
+    if (habits.length === 0) {
+        $("#habit-container").text("No habits found in this category")
+    } else {
+        await checkForHabits();
+        //update the daily percent complete in the DOM
+        await updateCurrentPercent();
+        // iterate over the array of habits and pass each habit to renderSingleHabit()
+        habits.forEach(habit => {
+            renderSingleHabit(habit);
+        });
+    }
+}
+
+// event listener for category buttons
+const categoryBtns = document.querySelectorAll(".category-btn");
+categoryBtns.forEach(btn => {
+    btn.addEventListener("click", async () => {
+        const categoryName = btn.textContent;
+        console.log(categoryName);
+        await renderHabitsByCategory(categoryName);
+    });
+});
 
 
 // event listener for add habit button

@@ -15,9 +15,8 @@
 
 
             <%-- Habit Container --%>
-            <section class="row col-md d-flex flex-column border rounded-4 border-dark p-5" id="habit-container">
+            <section class="row col-md d-flex flex-column border rounded-4 border-dark p-5">
                 <jsp:include page="partials/dailyStats.jsp"></jsp:include>
-                <!-- Habits are dynamically inserted here -->
                 <div id="no-habits">
                     <h1 class="text-center">You have no habits yet!</h1>
                     <p class="text-center">Click the button below to add a new habit.</p>
@@ -27,6 +26,11 @@
                             Add Habit
                         </button>
                     </div>
+                </div>
+
+                <div id="habit-container">
+                    <!-- Habits are dynamically inserted here -->
+
                 </div>
 
             </section>
