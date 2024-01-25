@@ -6,21 +6,33 @@
                     data-bs-toggle="modal"
                     data-bs-target="#addHabit">+ Add Habit
             </button>
-            <div class="dropdown p-0 flex-fill">
+<%--            <div class="dropdown p-0 flex-fill">--%>
+<%--                <a class="btn btn-outline-primary dropdown-toggle rounded-pill" href="#" role="button"--%>
+<%--                   data-bs-toggle="dropdown" aria-expanded="false">--%>
+<%--                    Filter By Category--%>
+<%--                </a>--%>
+
+<%--                <ul class="dropdown-menu">--%>
+<%--                    <li class="dropdown-item btn category-btn">All</li>--%>
+<%--                    <li class="dropdown-item btn category-btn">Physical Health</li>--%>
+<%--                    <li class="dropdown-item btn category-btn">Mental Health</li>--%>
+<%--                    <li class="dropdown-item btn category-btn">Relationships</li>--%>
+<%--                    <li class="dropdown-item btn category-btn">Personal Growth</li>--%>
+<%--                    <li class="dropdown-item btn category-btn">Career</li>--%>
+<%--                    <li class="dropdown-item btn category-btn">Financial</li>--%>
+<%--                    <li class="dropdown-item btn category-btn">Spiritual</li>--%>
+<%--                </ul>--%>
+<%--            </div>--%>
+            <div id="status-btn-dropdown" class="dropdown p-0 flex-fill">
                 <a class="btn btn-outline-primary dropdown-toggle rounded-pill" href="#" role="button"
                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Filter By Category
+                    Filter By Status
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li class="dropdown-item btn category-btn">All</li>
-                    <li class="dropdown-item btn category-btn">Physical Health</li>
-                    <li class="dropdown-item btn category-btn">Mental Health</li>
-                    <li class="dropdown-item btn category-btn">Relationships</li>
-                    <li class="dropdown-item btn category-btn">Personal Growth</li>
-                    <li class="dropdown-item btn category-btn">Career</li>
-                    <li class="dropdown-item btn category-btn">Financial</li>
-                    <li class="dropdown-item btn category-btn">Spiritual</li>
+                    <li class="dropdown-item btn status-btn">All</li>
+                    <li class="dropdown-item btn status-btn">Complete</li>
+                    <li class="dropdown-item btn status-btn">Incomplete</li>
                 </ul>
             </div>
         </div>

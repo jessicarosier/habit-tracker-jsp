@@ -61,7 +61,7 @@
                                 <option value="1">Physical Health</option>
                                 <option value="2">Mental Health</option>
                                 <option value="3">Relationships</option>
-                                <option value="4">Time</option>
+                                <option value="4">Personal Growth</option>
                                 <option value="5">Career</option>
                                 <option value="6">Financial</option>
                                 <option value="7">Spiritual</option>

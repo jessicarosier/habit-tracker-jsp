@@ -1,5 +1,5 @@
 import {urlPattern} from "./js/variables.js";
-import {getAllHabits, getUpdatedPercent, getHabitsByCategory} from "./js/api-get.js";
+import {getAllHabits, getUpdatedPercent, getHabitsByCategory, getHabitsByCompletedStatus} from "./js/api-get.js";
 
 
 //update the daily percent complete in the DOM
@@ -248,6 +248,23 @@ async function renderHabitsByCategory(categoryName) {
     }
 }
 
+async function renderHabitsByCompletedStatus(completedStatus) {
+    $("#habit-container").empty();
+    const habits = await getHabitsByCompletedStatus(completedStatus);
+    console.log(habits);
+    if (habits.length === 0) {
+        $("#status-btn-dropdown").hide();
+    } else {
+        await checkForHabits();
+        //update the daily percent complete in the DOM
+        await updateCurrentPercent();
+        // iterate over the array of habits and pass each habit to renderSingleHabit()
+        habits.forEach(habit => {
+            renderSingleHabit(habit);
+        });
+    }
+}
+
 // event listener for category buttons
 const categoryBtns = document.querySelectorAll(".category-btn");
 categoryBtns.forEach(btn => {
@@ -255,6 +272,16 @@ categoryBtns.forEach(btn => {
         const categoryName = btn.textContent;
         console.log(categoryName);
         await renderHabitsByCategory(categoryName);
+    });
+});
+
+// event listener for all habits button
+const statusBtns = document.querySelectorAll(".status-btn");
+statusBtns.forEach(btn => {
+    btn.addEventListener("click", async () => {
+        const completedStatus = btn.textContent;
+        console.log(completedStatus);
+        await renderHabitsByCompletedStatus(completedStatus);
     });
 });
 

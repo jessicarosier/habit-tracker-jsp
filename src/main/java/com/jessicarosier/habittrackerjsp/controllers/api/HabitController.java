@@ -7,8 +7,9 @@ import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
-    @RestController
+@RestController
     public class HabitController {
 
         private HabitRepository habitRepository;
@@ -72,9 +73,18 @@ import java.util.ArrayList;
                 }
             }
             int percent = (completedHabits * 100) / totalHabits;
-
-
             return percent;
+        }
+
+        @GetMapping("/api/habits/" + "{status}")
+        public List<Habit> getHabitsByStatus(@PathVariable String status) {
+            if(status.equals("All")) {
+                return habitRepository.findAll();
+            } else if(status.equals("Complete")){
+                return habitRepository.findAllByCompletedIsTrue();
+            } else {
+                return habitRepository.findAllByCompletedIsFalse();
+            }
         }
 
 
