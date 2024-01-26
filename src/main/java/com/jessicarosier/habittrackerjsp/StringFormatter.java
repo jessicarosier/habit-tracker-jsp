@@ -16,6 +16,7 @@ public class StringFormatter {
         for (File file : listOfFiles) {
             if (file.isFile()) {
                 files.add(file.getName());
+                System.out.println(file.getName());
             }
         }
         return files;
